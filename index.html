@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>">
-<title>Kate Angela Pasag — Art Portfolio</title>
-<link rel="icon" href="data:,">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -268,7 +265,6 @@
   .card-image-zone {
     background: #eae6df;
     position: relative;
-    cursor: pointer;
     min-height: 300px;
     display: flex;
     align-items: center;
@@ -375,7 +371,7 @@
   </div>
   <div class="statement-body">
     <p class="statement-text">
-     As an IT student and as a person with a passion for both technology and visual expression, my work explores the intersection of digital/traditional tools and artistic creativity. Through each module, I sought to understand design not merely as a technical skill but as a language one that communicates ideas, emotions, and cultural identity. From observational drawing to digital poster-making, every piece challenged me to see the world with greater intention and curiosity. I am especially drawn to how Filipino aesthetics can be woven into contemporary digital formats, bridging heritage and innovation. This portfolio reflects my growth as an artist and a critical thinker, showcasing traditional art and digital art.
+      As an IT student with a passion for both technology and visual expression, my work explores the intersection of digital tools and artistic creativity. Through each module, I sought to understand design not merely as a technical skill but as a language — one that communicates ideas, emotions, and cultural identity. From observational drawing to digital poster-making, every piece challenged me to see the world with greater intention and curiosity. I am especially drawn to how Filipino aesthetics can be woven into contemporary digital formats, bridging heritage and innovation. This portfolio reflects my growth as both a creator and a critical thinker, documenting the journey from beginner to a more confident digital artist who understands that every pixel, pattern, and composition carries meaning.
     </p>
     <p class="statement-sig">— Kate Angela Pasag</p>
   </div>
@@ -416,16 +412,16 @@
 
 <script>
 const MODULES = [
-  { mod: "Module 1",   title: "Digital Visual World Collage",    desc: "Photo collage",        photo: "photos/module 1.png" },
-  { mod: "Module 2",   title: "Observational Drawing",            desc: "7 Elements of Art",            photo: "photos/module 2.jpg" },
-  { mod: "Module 3",   title: "Abstract Composition",             desc: "Non-representational artwork", photo: "photos/module 3.png" },
-  { mod: "Module 4",   title: "Transformation Series",            desc: "3 versions — before to after", photo: "photos/module 4.png" },
-  { mod: "Module 5",   title: "Filipino-Inspired Pattern Design", desc: "Cultural pattern exploration", photo: "photos/module 5.png" },
-  { mod: "Module 6–7", title: "Drawing or Painting Artwork",      desc: "Traditional & digital media",  photo: "photos/module 6.jpg" },
-  { mod: "Module 8",   title: "Digital Poster",                   desc: "Graphic design composition",   photo: "photos/module 8.png" },
-  { mod: "Module 9",   title: "Photo Narrative Series",           desc: "3-photo visual story",         photo: "photos/module 9.jpg" },
-  { mod: "Module 10",  title: "Infographic (IT Topic)",           desc: "Data & information design",    photo: "photos/module 10.jpg" },
-  { mod: "Module 11",  title: "Meme Series Creation",             desc: "Digital humor & commentary",   photo: "photos/module 11.png" },
+  { mod: "Module 1",   title: "Digital Visual World Collage",    desc: "10-slot photo collage",        photo: "photos/module1.png" },
+  { mod: "Module 2",   title: "Observational Drawing",            desc: "7 Elements of Art",            photo: "photos/module2.jpg" },
+  { mod: "Module 3",   title: "Abstract Composition",             desc: "Non-representational artwork", photo: "photos/module3.png" },
+  { mod: "Module 4",   title: "Transformation Series",            desc: "3 versions — before to after", photo: "photos/module4.png" },
+  { mod: "Module 5",   title: "Filipino-Inspired Pattern Design", desc: "Cultural pattern exploration", photo: "photos/module5.png" },
+  { mod: "Module 6–7", title: "Drawing or Painting Artwork",      desc: "Traditional & digital media",  photo: "photos/module6.jpg" },
+  { mod: "Module 8",   title: "Digital Poster",                   desc: "Graphic design composition",   photo: "photos/module8.png" },
+  { mod: "Module 9",   title: "Photo Narrative Series",           desc: "3-photo visual story",         photo: "photos/module9.jpg" },
+  { mod: "Module 10",  title: "Infographic (IT Topic)",           desc: "Data & information design",    photo: "photos/module10.jpg" },
+  { mod: "Module 11",  title: "Meme Series Creation",             desc: "Digital humor & commentary",   photo: "photos/module11.png" },
 ];
 
 const tocItems = [
@@ -477,19 +473,8 @@ MODULES.forEach((m, idx) => {
         <polyline points="21 15 16 10 5 21"/>
       </svg>
     </div>
-    <span class="placeholder-text">Upload Image</span>`;
+    <span class="placeholder-text">No Image</span>`;
   zone.appendChild(ph);
-
-  const fi = document.createElement("input");
-  fi.type = "file";
-  fi.accept = "image/*";
-  fi.id = "fi" + idx;
-  fi.addEventListener("change", (e) => handleUpload(e, idx));
-  zone.appendChild(fi);
-
-  zone.addEventListener("click", () => {
-    if (idx === current) document.getElementById("fi" + idx).click();
-  });
 
   card.appendChild(zone);
 
@@ -510,17 +495,6 @@ MODULES.forEach((_, i) => {
   d.addEventListener("click", () => jumpTo(i));
   dotsRow.appendChild(d);
 });
-
-function handleUpload(e, idx) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    imageData[idx] = ev.target.result;
-    refreshMain(idx);
-  };
-  reader.readAsDataURL(file);
-}
 
 function refreshMain(idx) {
   const img = document.getElementById("mainImg" + idx);
