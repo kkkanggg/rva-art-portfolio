@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>">
+<title>Kate Angela Pasag — Art Portfolio</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f2ec;
+    --ink: #1a1714;
+    --warm-gray: #8a8278;
+    --border: #d4cfc7;
+    --accent: #2c2520;
+    --gold: #b8955a;
+    --card-bg: #faf8f4;
+    --hover-bg: #f0ede6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .header-nav { display: flex; gap: 2rem; list-style: none; }
+
+  .header-nav a {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: var(--ink); }
+
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 3rem 4rem;
+  }
+
+  .cover-inner { text-align: center; max-width: 700px; }
+
+  .cover-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 2rem;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.2em;
+  }
+
+  .cover-title em { font-style: italic; color: var(--gold); }
+
+  .cover-info {
+    margin-top: 3rem;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .cover-info-item { text-align: center; }
+
+  .cover-info-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .cover-info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .section-header {
+    padding: 5rem 3rem 3rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+  }
+
+  .section-num { font-size: 10px; letter-spacing: 0.15em; color: var(--warm-gray); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  #statement { background: var(--card-bg); border-bottom: 1px solid var(--border); }
+
+  .statement-body {
+    padding: 3rem;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .statement-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  .statement-sig {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  #toc { border-bottom: 1px solid var(--border); }
+
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+  .toc-item {
+    padding: 1.5rem 3rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { background: var(--hover-bg); }
+
+  .toc-item-num {
+    font-size: 10px;
+    color: var(--warm-gray);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    width: 20px;
+  }
+
+  .toc-item-text { font-size: 13px; letter-spacing: 0.03em; }
+
+  #modules { border-bottom: 1px solid var(--border); }
+
+  .carousel-wrapper { padding: 3rem; position: relative; overflow: hidden; }
+
+  .module-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .module-indicator {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .carousel-nav { display: flex; align-items: center; gap: 1rem; }
+
+  .carousel-counter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--ink);
+    min-width: 70px;
+    text-align: center;
+  }
+
+  .nav-arrow {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    transition: all 0.2s;
+    font-size: 16px;
+  }
+  .nav-arrow:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .cards-stage {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .module-card {
+    position: absolute;
+    width: 580px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+  }
+
+  .module-card.pos-current { transform: translateX(0) scale(1); opacity: 1; z-index: 10; }
+  .module-card.pos-prev    { transform: translateX(-420px) scale(0.87); opacity: 0.2; z-index: 5; pointer-events: none; }
+  .module-card.pos-next    { transform: translateX(420px) scale(0.87); opacity: 0.2; z-index: 5; pointer-events: none; }
+  .module-card.pos-hidden  { transform: translateX(0) scale(0.75); opacity: 0; z-index: 1; pointer-events: none; }
+
+  .card-image-zone {
+    background: #eae6df;
+    position: relative;
+    cursor: pointer;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-image-zone img {
+    width: 100%; height: auto; max-width: 100%;
+    display: none; object-fit: contain;
+  }
+  .card-image-zone img.shown { display: block; }
+
+  .card-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px; pointer-events: none;
+  }
+  .placeholder-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .placeholder-icon svg { width: 20px; height: 20px; stroke: var(--warm-gray); fill: none; }
+  .placeholder-text {
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--warm-gray);
+  }
+
+  .card-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border); background: var(--card-bg); }
+  .card-mod-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .card-mod-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--ink); line-height: 1.2; }
+  .card-mod-desc  { font-size: 10px; color: var(--warm-gray); margin-top: 4px; letter-spacing: 0.05em; }
+
+  .dots-row { display: flex; justify-content: center; gap: 8px; margin-top: 2.5rem; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); transition: all 0.25s; cursor: pointer; }
+  .dot.active { width: 20px; border-radius: 2.5px; background: var(--ink); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--warm-gray); font-size: 10px; letter-spacing: 0.1em;
+  }
+
+  input[type="file"] { display: none; }
+
+  .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.8s ease forwards; }
+  .fade-in:nth-child(2) { animation-delay: 0.1s; }
+  .fade-in:nth-child(3) { animation-delay: 0.2s; }
+  .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 700px) {
+    header { padding: 0 1.2rem; }
+    .header-nav { gap: 1rem; }
+    .cover { padding: 80px 1.5rem 3rem; }
+    .section-header, .carousel-wrapper, .statement-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .module-card { width: min(90vw, 400px); }
+    .toc-item { padding: 1.2rem 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#cover" class="header-name">Kate Angela Pasag</a>
+  <nav>
+    <ul class="header-nav">
+      <li><a href="#statement">Statement</a></li>
+      <li><a href="#toc">Contents</a></li>
+      <li><a href="#modules">Works</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="cover" id="cover">
+  <div class="cover-inner">
+    <p class="cover-eyebrow fade-in">Art Portfolio — Reading Visual Arts</p>
+    <h1 class="cover-title fade-in">Kate <em>Angela</em><br>Pasag</h1>
+    <div class="cover-info fade-in">
+      <div class="cover-info-item">
+        <span class="cover-info-label">Course</span>
+        <span class="cover-info-value">BSIT</span>
+      </div>
+      <div class="cover-info-item">
+        <span class="cover-info-label">Section</span>
+        <span class="cover-info-value">2A</span>
+      </div>
+      <div class="cover-info-item">
+        <span class="cover-info-label">Contact</span>
+        <span class="cover-info-value">+63 948 122 0511</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="statement">
+  <div class="section-header">
+    <span class="section-num">— 00</span>
+    <h2 class="section-title">Artist Statement</h2>
+  </div>
+  <div class="statement-body">
+    <p class="statement-text">
+     As an IT student and as a person with a passion for both technology and visual expression, my work explores the intersection of digital/traditional tools and artistic creativity. Through each module, I sought to understand design not merely as a technical skill but as a language one that communicates ideas, emotions, and cultural identity. From observational drawing to digital poster-making, every piece challenged me to see the world with greater intention and curiosity. I am especially drawn to how Filipino aesthetics can be woven into contemporary digital formats, bridging heritage and innovation. This portfolio reflects my growth as an artist and a critical thinker, showcasing traditional art and digital art.
+    </p>
+    <p class="statement-sig">— Kate Angela Pasag</p>
+  </div>
+</section>
+
+<section id="toc">
+  <div class="section-header">
+    <span class="section-num">— 01</span>
+    <h2 class="section-title">Table of Contents</h2>
+  </div>
+  <div class="toc-grid" id="tocGrid"></div>
+</section>
+
+<section id="modules">
+  <div class="section-header">
+    <span class="section-num">— 02</span>
+    <h2 class="section-title">Module Outputs</h2>
+  </div>
+  <div class="carousel-wrapper">
+    <div class="module-label-row">
+      <span class="module-indicator" id="modLabel">Module 1 of 10</span>
+      <div class="carousel-nav">
+        <button class="nav-arrow" id="prevBtn">&#8592;</button>
+        <span class="carousel-counter" id="counter">01 / 10</span>
+        <button class="nav-arrow" id="nextBtn">&#8594;</button>
+      </div>
+    </div>
+    <div class="cards-stage" id="cardsStage"></div>
+    <div class="dots-row" id="dotsRow"></div>
+  </div>
+</section>
+
+<footer>
+  <span>Kate Angela Pasag &mdash; BSIT 2A</span>
+  <span>Digital Arts Portfolio</span>
+  <span>63 9481220511</span>
+</footer>
+
+<script>
+const MODULES = [
+  { mod: "Module 1",   title: "Digital Visual World Collage",    desc: "Photo collage",        photo: "photos/module 1.png" },
+  { mod: "Module 2",   title: "Observational Drawing",            desc: "7 Elements of Art",            photo: "photos/module 2.jpg" },
+  { mod: "Module 3",   title: "Abstract Composition",             desc: "Non-representational artwork", photo: "photos/module 3.png" },
+  { mod: "Module 4",   title: "Transformation Series",            desc: "3 versions — before to after", photo: "photos/module 4.png" },
+  { mod: "Module 5",   title: "Filipino-Inspired Pattern Design", desc: "Cultural pattern exploration", photo: "photos/module 5.png" },
+  { mod: "Module 6–7", title: "Drawing or Painting Artwork",      desc: "Traditional & digital media",  photo: "photos/module 6.jpg" },
+  { mod: "Module 8",   title: "Digital Poster",                   desc: "Graphic design composition",   photo: "photos/module 8.png" },
+  { mod: "Module 9",   title: "Photo Narrative Series",           desc: "3-photo visual story",         photo: "photos/module 9.jpg" },
+  { mod: "Module 10",  title: "Infographic (IT Topic)",           desc: "Data & information design",    photo: "photos/module 10.jpg" },
+  { mod: "Module 11",  title: "Meme Series Creation",             desc: "Digital humor & commentary",   photo: "photos/module 11.png" },
+];
+
+const tocItems = [
+  { num: "00", label: "Artist Statement", href: "#statement" },
+  ...MODULES.map((m, i) => ({ num: String(i + 1).padStart(2, "0"), label: m.title, href: "#modules" }))
+];
+
+const tocGrid = document.getElementById("tocGrid");
+tocItems.forEach((item, i) => {
+  const a = document.createElement("a");
+  a.className = "toc-item";
+  a.href = item.href;
+  if (item.href === "#modules") {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector("#modules").scrollIntoView({ behavior: "smooth" });
+      if (i > 0) jumpTo(i - 1);
+    });
+  }
+  a.innerHTML = `<span class="toc-item-num">${item.num}</span><span class="toc-item-text">${item.label}</span>`;
+  tocGrid.appendChild(a);
+});
+
+let current = 0;
+const imageData = MODULES.map(m => m.photo || null);
+const stage = document.getElementById("cardsStage");
+const dotsRow = document.getElementById("dotsRow");
+
+MODULES.forEach((m, idx) => {
+  const card = document.createElement("div");
+  card.className = "module-card pos-hidden";
+  card.id = "card" + idx;
+
+  const zone = document.createElement("div");
+  zone.className = "card-image-zone";
+
+  const img = document.createElement("img");
+  img.id = "mainImg" + idx;
+  zone.appendChild(img);
+
+  const ph = document.createElement("div");
+  ph.className = "card-placeholder";
+  ph.id = "ph" + idx;
+  ph.innerHTML = `
+    <div class="placeholder-icon">
+      <svg viewBox="0 0 24 24" stroke-width="1.2">
+        <rect x="3" y="3" width="18" height="18" rx="1"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+    </div>
+    <span class="placeholder-text">Upload Image</span>`;
+  zone.appendChild(ph);
+
+  const fi = document.createElement("input");
+  fi.type = "file";
+  fi.accept = "image/*";
+  fi.id = "fi" + idx;
+  fi.addEventListener("change", (e) => handleUpload(e, idx));
+  zone.appendChild(fi);
+
+  zone.addEventListener("click", () => {
+    if (idx === current) document.getElementById("fi" + idx).click();
+  });
+
+  card.appendChild(zone);
+
+  const foot = document.createElement("div");
+  foot.className = "card-footer";
+  foot.innerHTML = `
+    <div class="card-mod-label">${m.mod}</div>
+    <div class="card-mod-title">${m.title}</div>
+    <div class="card-mod-desc">${m.desc}</div>`;
+  card.appendChild(foot);
+
+  stage.appendChild(card);
+});
+
+MODULES.forEach((_, i) => {
+  const d = document.createElement("div");
+  d.className = "dot" + (i === 0 ? " active" : "");
+  d.addEventListener("click", () => jumpTo(i));
+  dotsRow.appendChild(d);
+});
+
+function handleUpload(e, idx) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    imageData[idx] = ev.target.result;
+    refreshMain(idx);
+  };
+  reader.readAsDataURL(file);
+}
+
+function refreshMain(idx) {
+  const img = document.getElementById("mainImg" + idx);
+  const ph = document.getElementById("ph" + idx);
+  const data = imageData[idx];
+  if (data) {
+    img.src = data;
+    img.classList.add("shown");
+    if (ph) ph.style.opacity = "0";
+    img.onerror = () => {
+      img.classList.remove("shown");
+      if (ph) ph.style.opacity = "1";
+      if (idx === current) syncStageHeight();
+    };
+    img.onload = () => {
+      if (idx === current) syncStageHeight();
+    };
+  } else {
+    img.classList.remove("shown");
+    if (ph) ph.style.opacity = "1";
+    if (idx === current) syncStageHeight();
+  }
+}
+
+function getPos(idx) {
+  const total = MODULES.length;
+  if (idx === current) return "pos-current";
+  if (idx === (current - 1 + total) % total) return "pos-prev";
+  if (idx === (current + 1) % total) return "pos-next";
+  return "pos-hidden";
+}
+
+function syncStageHeight() {
+  const card = document.getElementById("card" + current);
+  const stageEl = document.getElementById("cardsStage");
+  if (card) setTimeout(() => { stageEl.style.height = card.offsetHeight + "px"; }, 50);
+}
+
+function render() {
+  MODULES.forEach((_, idx) => {
+    document.getElementById("card" + idx).className = "module-card " + getPos(idx);
+  });
+  document.querySelectorAll(".dot").forEach((d, i) => d.classList.toggle("active", i === current));
+  const n = current + 1, total = MODULES.length;
+  document.getElementById("counter").textContent = String(n).padStart(2, "0") + " / " + String(total).padStart(2, "0");
+  document.getElementById("modLabel").textContent = MODULES[current].mod + " of " + total;
+  syncStageHeight();
+}
+
+function go(dir) { current = (current + dir + MODULES.length) % MODULES.length; render(); }
+function jumpTo(idx) { current = idx; render(); }
+
+document.getElementById("prevBtn").addEventListener("click", () => go(-1));
+document.getElementById("nextBtn").addEventListener("click", () => go(1));
+document.addEventListener("keydown", e => { if (e.key === "ArrowLeft") go(-1); if (e.key === "ArrowRight") go(1); });
+window.addEventListener("resize", syncStageHeight);
+
+MODULES.forEach((_, idx) => refreshMain(idx));
+render();
+</script>
+</body>
+</html>
